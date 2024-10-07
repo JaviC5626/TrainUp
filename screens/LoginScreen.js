@@ -1,7 +1,7 @@
 // screens/LoginScreen.js
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
-import { firebase } from '../firebase';  // Asegúrate de que la ruta sea correcta
+import { firebase } from '../firebase';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');

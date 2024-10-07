@@ -2,9 +2,9 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import MainScreen from './screens/MainScreen'; // Componente que muestra los botones
-import RegisterScreen from './screens/RegisterScreen'; // Ruta a RegisterScreen
-import LoginScreen from './screens/LoginScreen'; // Ruta a LoginScreen
+import MainScreen from './screens/MainScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import LoginScreen from './screens/LoginScreen';
 
 const Stack = createStackNavigator();
 

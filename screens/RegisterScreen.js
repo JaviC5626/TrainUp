@@ -1,7 +1,7 @@
 // screens/RegisterScreen.js
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
-import { firebase } from '../firebase';  // Asegúrate de que la ruta sea correcta
+import { firebase } from '../firebase';
 
 const RegisterScreen = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   logo: {
     width: '60%',
     height: undefined,
-    aspectRatio: 1, // Mantener la proporción
+    aspectRatio: 1,
     marginBottom: 1,
     alignSelf: 'center',
     marginTop: 60,

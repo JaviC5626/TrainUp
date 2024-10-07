@@ -1,7 +1,7 @@
 // App.js
-import React, { useEffect } from 'react'; // Asegúrate de importar useEffect
-import MainApp from './MainApp'; // Asegúrate de importar MainApp
-import { firebase } from './firebase';  // Asegúrate de importar Firebase
+import React, { useEffect } from 'react';
+import MainApp from './MainApp';
+import { firebase } from './firebase';
 
 export default function App() {
   useEffect(() => {
@@ -17,5 +17,5 @@ export default function App() {
     testAuth();
   }, []);
 
-  return <MainApp />; // Muestra el componente principal
+  return <MainApp />;
 }

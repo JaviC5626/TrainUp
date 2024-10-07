@@ -26,25 +26,25 @@ const styles = StyleSheet.create({
     backgroundColor: '#D0EDFF',
   },
   logo: {
-    width: '100%', // Asegúrate de que la imagen esté completa
+    width: '90%',
     height: undefined,
-    aspectRatio: 1, // Mantiene la proporción de la imagen
+    aspectRatio: 1,
     marginBottom: 20,
   },
   buttonContainer: {
-    flexDirection: 'row', // Coloca los botones uno al lado del otro
+    flexDirection: 'row',
     justifyContent: 'space-around',
-    width: '80%', // Ajustar el ancho de los botones
+    width: '80%',
   },
   button: {
     backgroundColor: '#FFE8E5',
     padding: 15,
-    borderRadius: 30, // Hacer que el botón sea ovalado
+    borderRadius: 30,
     alignItems: 'center',
     marginVertical: 10,
-    borderColor: 'black', // Borde negro
-    borderWidth: 1, // Ancho del borde
-    shadowColor: '#000', // Sombra
+    borderColor: 'black',
+    borderWidth: 1,
+    shadowColor: '#000',
     shadowOffset: {
       width: 2,
       height: 2,
