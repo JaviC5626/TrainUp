@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// App.js
+import React, { useEffect } from 'react'; // Asegúrate de importar useEffect
+import MainApp from './MainApp'; // Asegúrate de importar MainApp
+import { firebase } from './firebase';  // Asegúrate de importar Firebase
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Train Up</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  useEffect(() => {
+    const testAuth = async () => {
+      try {
+        const userCredential = await firebase.auth().signInAnonymously();
+        console.log('Inicio de sesión anónimo exitoso:', userCredential.user);
+      } catch (error) {
+        console.error('Error al iniciar sesión:', error);
+      }
+    };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    testAuth();
+  }, []);
+
+  return <MainApp />; // Muestra el componente principal
+}

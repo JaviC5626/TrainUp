@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "train_up",
-    "slug": "train_up",
+    "name": "firebase-test",
+    "slug": "firebase-test",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
