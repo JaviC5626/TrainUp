@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   logo: {
-    width: '60%',
+    width: '40%',
     height: undefined,
     aspectRatio: 1,
     marginBottom: 1,
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   input: {
-    height: 40,
+    height: 30,
     borderColor: 'blue',
     borderWidth: 1,
     marginBottom: 10,
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     borderRadius: 30,
-    width: '60%',
+    width: '50%',
     alignSelf: 'center',
     borderColor: 'black',
     borderWidth: 1,

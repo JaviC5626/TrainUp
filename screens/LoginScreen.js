@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
 import { firebase } from '../firebase';
 
-const LoginScreen = ({ navigation }) => {
+export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -11,6 +11,7 @@ const LoginScreen = ({ navigation }) => {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
       Alert.alert('Inicio de sesión exitoso', 'Has iniciado sesión correctamente');
+      navigation.navigate('LevelSelection');
     } catch (error) {
       Alert.alert('Error', error.message);
     }
@@ -44,7 +45,7 @@ const LoginScreen = ({ navigation }) => {
       </TouchableOpacity>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -73,12 +74,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   logo: {
-    width: '70%',
+    width: '40%',
     height: undefined,
     aspectRatio: 1,
-    marginBottom: 20,
+    marginBottom: 1,
     alignSelf: 'center',
-    marginTop: 80,
+    marginTop: 60,
   },
   formContainer: {
     marginTop: 20,
@@ -89,10 +90,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   input: {
-    height: 50,
+    height: 40,
     borderColor: 'blue',
     borderWidth: 1,
-    marginBottom: 15,
+    marginBottom: 10,
     paddingLeft: 8,
     borderRadius: 10,
     backgroundColor: 'white',
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     borderRadius: 30,
-    width: '80%',
+    width: '50%',
     alignSelf: 'center',
     borderColor: 'black',
     borderWidth: 1,
@@ -119,5 +120,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
-export default LoginScreen;

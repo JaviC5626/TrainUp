@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#D0EDFF',
   },
   logo: {
-    width: '90%',
+    width: '100%',
     height: undefined,
     aspectRatio: 1,
     marginBottom: 20,
