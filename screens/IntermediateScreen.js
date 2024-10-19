@@ -1,14 +1,52 @@
 // screens/IntermediateScreen.js
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, FlatList} from 'react-native';
 
 export default function IntermediateScreen({ navigation }) {
+  // Lista de ejercicios diarios 
+  const exerciseData = [
+    { key: '1', name: 'Sentadilla normal', sets: '2', reps: '15', muscleGroup: 'glúteos- isquiotibiales-cuádriceps' },
+    { key: '2', name: 'Abdominales', sets: '3', reps: '10', muscleGroup: 'Abdomen' },
+    { key: '3', name: 'Burpies', sets: '3', reps: '10', muscleGroup: 'pectorales-tríceps-hombros-cuádricepsfemorales-gemelos' },
+    { key: '4', name: 'Elevacion de pantorrilla', sets: '2', reps: '12', muscleGroup: 'gastrocnemio-sóleo' },
+    { key: '5', name: 'Peso muerto', sets: '2', reps: '12', muscleGroup: 'espalda-tronco' },
+  ];
+
+  // Renderizado de cada ejercicio en la tabla
+  const renderExerciseItem = ({ item }) => (
+    <View style={styles.tableRow}>
+      <Text style={styles.tableCell}>{item.name}</Text>
+      <Text style={styles.tableCell}>{item.sets}</Text>
+      <Text style={styles.tableCell}>{item.reps}</Text>
+      <Text style={styles.tableCell}>{item.muscleGroup}</Text>
+    </View>
+  );
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
         <Text style={styles.backButtonText}>Regresar</Text>
       </TouchableOpacity>
-      <Text style={styles.title}>Intermediario</Text>
+      
+      <Text style={styles.title}>Plan de entrenamiento Intermedio</Text>
+      <Text style={styles.title}>Duracion: 1 hora & 30 minutos</Text>
+
+
+      {/* Tabla de ejercicios */}
+      <View style={styles.table}>
+        <View style={styles.tableHeader}>
+          <Text style={[styles.tableCell, styles.headerCell]}>Ejercicio</Text>
+          <Text style={[styles.tableCell, styles.headerCell]}>Series</Text>
+          <Text style={[styles.tableCell, styles.headerCell]}>Repeticiones</Text>
+          <Text style={[styles.tableCell, styles.headerCell]}>Grupo Muscular</Text>
+        </View>
+        
+        <FlatList
+          data={exerciseData}
+          renderItem={renderExerciseItem}
+          keyExtractor={item => item.key}
+        />
+      </View>
     </View>
   );
 }
@@ -16,7 +54,7 @@ export default function IntermediateScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 6,
     backgroundColor: '#D0EDFF',
     justifyContent: 'center',
     alignItems: 'center',
@@ -42,7 +80,30 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   title: {
-    fontSize: 24,
+    fontSize: 23,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  table: {
+    width: '100%',
+  },
+  tableHeader: {
+    flexDirection: 'row',
+    backgroundColor: '#FF4766',
+    padding: 8,
+  },
+  tableRow: {
+    flexDirection: 'row',
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: 2,
+    borderBottomColor: '#CCCCCC',
+    padding: 10,
+  },
+  tableCell: {
+    flex: 1,
+    textAlign: 'center',
+  },
+  headerCell: {
     fontWeight: 'bold',
   },
 });
