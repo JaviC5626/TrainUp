@@ -2,13 +2,13 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import MainScreen from './screens/MainScreen';
-import RegisterScreen from './screens/RegisterScreen';
-import LoginScreen from './screens/LoginScreen';
-import LevelSelectionScreen from './screens/LevelSelectionScreen';
-import BeginnerScreen from './screens/BeginnerScreen';
-import IntermediateScreen from './screens/IntermediateScreen';
-import AdvancedScreen from './screens/AdvancedScreen';
+import MainScreen from './src/MainScreen';
+import RegisterScreen from './src/screens/auth/RegisterScreen';
+import LoginScreen from './src/screens/auth/LoginScreen';
+import LevelSelectionScreen from './src/screens/levels/LevelSelectionScreen';
+import BeginnerScreen from './src/screens/levels/BeginnerScreen';
+import IntermediateScreen from './src/screens/levels/IntermediateScreen';
+import AdvancedScreen from './src/screens/levels/AdvancedScreen';
 
 const Stack = createStackNavigator();
 

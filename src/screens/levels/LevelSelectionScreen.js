@@ -9,7 +9,7 @@ export default function LevelSelectionScreen({ navigation }) {
         <Text style={styles.backButtonText}>Regresar</Text>
       </TouchableOpacity>
       <Text style={styles.title}>Selecciona tu nivel!</Text>
-      <Image source={require('../assets/level_image.png')} style={styles.image} resizeMode="contain" />
+      <Image source={require('../../assets/image/level_image.png')} style={styles.image} resizeMode="contain" />
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Beginner')}>
           <Text style={styles.buttonText}>Principiante</Text>

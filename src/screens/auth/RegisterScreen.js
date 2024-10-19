@@ -1,7 +1,7 @@
 // screens/RegisterScreen.js
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
-import { firebase } from '../firebase';
+import { firebase } from '../../../firebase';
 
 const RegisterScreen = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -30,7 +30,7 @@ const RegisterScreen = ({ navigation }) => {
       <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
         <Text style={styles.backButtonText}>Regresar</Text>
       </TouchableOpacity>
-      <Image source={require('../assets/logo.png')} style={styles.logo} resizeMode="contain" />
+      <Image source={require('../../assets/image/logo.png')} style={styles.logo} resizeMode="contain" />
       <View style={styles.formContainer}>
         <Text style={styles.label}>Nombre:</Text>
         <TextInput
