@@ -11,12 +11,13 @@ const ExerciseListScreen = ({ navigation }) => {
     const fetchExercises = async () => {
       try {
         const docRef = doc(firestore, 'Planprincipante', 'nHInWtm0b7KnCkCe4hDR'); 
+        const docSnap = await getDoc(docRef);  
 
         if (docSnap.exists()) {
           const data = docSnap.data();
           const { Ejercicio, Series, Repeticiones } = data;
 
-          // Crear una lista de objetos que contenga los datos
+          
           const exerciseList = Ejercicio.map((ejercicio, index) => ({
             nombre: ejercicio,
             series: Series[index],
@@ -39,7 +40,6 @@ const ExerciseListScreen = ({ navigation }) => {
     if (currentIndex < exercises.length - 1) {
       setCurrentIndex(currentIndex + 1); 
     } else {
-      
       setCurrentIndex(0); 
     }
   };
