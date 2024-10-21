@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 
 export default function BeginnerScreen({ navigation }) {
-  // Lista de ejercicios diarios 
+  
   const exerciseData = [
     { key: '1', name: 'Flexiones de pecho normal', sets: '3', reps: '8', muscleGroup: 'Pecho-tríceps' },
     { key: '2', name: 'Flexiones de pecho en diamante', sets: '3', reps: '12', muscleGroup: 'Pecho-tríceps' },
@@ -46,6 +46,13 @@ export default function BeginnerScreen({ navigation }) {
           keyExtractor={item => item.key}
         />
       </View>
+      {/* Botón de Continuar */}
+      <TouchableOpacity 
+        style={styles.continueButton} 
+        onPress={() => navigation.navigate('TrainingDaysConfig')}
+      >
+        <Text style={styles.buttonText}>Continuar</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -103,6 +110,26 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   headerCell: {
+    fontWeight: 'bold',
+  },
+  continueButton: {
+    backgroundColor: '#FFE8E5',
+    padding: 15,
+    borderRadius: 30,
+    width: '80%',
+    alignItems: 'center',
+    marginBottom: 20,
+    borderColor: 'black',
+    borderWidth: 1,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+  },
+  buttonText: {
     fontWeight: 'bold',
   },
 });

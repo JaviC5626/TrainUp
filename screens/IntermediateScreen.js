@@ -1,6 +1,5 @@
-// screens/IntermediateScreen.js
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, FlatList} from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 
 export default function IntermediateScreen({ navigation }) {
   // Lista de ejercicios diarios 
@@ -8,7 +7,7 @@ export default function IntermediateScreen({ navigation }) {
     { key: '1', name: 'Sentadilla normal', sets: '2', reps: '15', muscleGroup: 'glúteos- isquiotibiales-cuádriceps' },
     { key: '2', name: 'Abdominales', sets: '3', reps: '10', muscleGroup: 'Abdomen' },
     { key: '3', name: 'Burpies', sets: '3', reps: '10', muscleGroup: 'pectorales-tríceps-hombros-cuádricepsfemorales-gemelos' },
-    { key: '4', name: 'Elevacion de pantorrilla', sets: '2', reps: '12', muscleGroup: 'gastrocnemio-sóleo' },
+    { key: '4', name: 'Elevación de pantorrilla', sets: '2', reps: '12', muscleGroup: 'gastrocnemio-sóleo' },
     { key: '5', name: 'Peso muerto', sets: '2', reps: '12', muscleGroup: 'espalda-tronco' },
   ];
 
@@ -29,8 +28,7 @@ export default function IntermediateScreen({ navigation }) {
       </TouchableOpacity>
       
       <Text style={styles.title}>Plan de entrenamiento Intermedio</Text>
-      <Text style={styles.title}>Duracion: 1 hora & 30 minutos</Text>
-
+      <Text style={styles.duration}>Duración: 1 hora & 30 minutos</Text>
 
       {/* Tabla de ejercicios */}
       <View style={styles.table}>
@@ -47,6 +45,14 @@ export default function IntermediateScreen({ navigation }) {
           keyExtractor={item => item.key}
         />
       </View>
+
+      {/* Botón de Continuar */}
+      <TouchableOpacity 
+        style={styles.continueButton} 
+        onPress={() => navigation.navigate('TrainingDaysConfig')}
+      >
+        <Text style={styles.buttonText}>Continuar</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -89,7 +95,7 @@ const styles = StyleSheet.create({
   },
   tableHeader: {
     flexDirection: 'row',
-    backgroundColor: '#FF4766',
+    backgroundColor: '#13f5f2',
     padding: 8,
   },
   tableRow: {
@@ -104,6 +110,26 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   headerCell: {
+    fontWeight: 'bold',
+  },
+  continueButton: {
+    backgroundColor: '#FFE8E5',
+    padding: 15,
+    borderRadius: 30,
+    width: '80%',
+    alignItems: 'center',
+    marginBottom: 20,
+    borderColor: 'black',
+    borderWidth: 1,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+  },
+  buttonText: {
     fontWeight: 'bold',
   },
 });
