@@ -5,7 +5,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 export default function MainScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Image source={require('./assets/image/logo.png')} style={styles.logo} resizeMode="contain"/>
+      <Image source={require('../src/assets/image/logo.png')} style={styles.logo} resizeMode="contain"/>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
           <Text style={styles.buttonText}>Iniciar Sesión</Text>

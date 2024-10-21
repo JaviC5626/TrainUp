@@ -62,7 +62,7 @@ const ExerciseListScreen = ({ navigation }) => {
       <Text style={styles.title}>Ejercicio: {currentExercise.nombre}</Text>
       
       {/* Imagen del ejercicio */}
-      <Image source={require('../assets/training.jpeg')} style={styles.image} resizeMode="contain" />
+      <Image source={require('../../assets/image/training.jpeg')} style={styles.image} resizeMode="contain" />
 
       <Text style={styles.instructions}>
         Instrucciones: Realiza {currentExercise.series} series de {currentExercise.repeticiones} repeticiones.

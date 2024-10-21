@@ -39,7 +39,7 @@ const TrainingDaysConfig = ({ navigation }) => {
 
       {}
       <Image 
-        source={require('../assets/Diasentreno.jpeg')} 
+        source={require('../../assets/image/Diasentreno.jpeg')} 
         style={styles.image} 
         resizeMode="contain" 
       />
@@ -60,7 +60,7 @@ const TrainingDaysConfig = ({ navigation }) => {
         <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
           <Text style={styles.buttonText}>Regresar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ProgressCalendar')}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Beginner')}>
           <Text style={styles.buttonText}>Seleccionar</Text>
         </TouchableOpacity>
       </View>

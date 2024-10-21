@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import MainScreen from './screens/MainScreen';
-import RegisterScreen from './screens/RegisterScreen';
-import LoginScreen from './screens/LoginScreen';
-import LevelSelectionScreen from './screens/LevelSelectionScreen';
-import ProgressCalendar from './screens/ProgressCalendar';
-import Training from './screens/Training';
-import BeginnerScreen from './screens/BeginnerScreen';
-import IntermediateScreen from './screens/IntermediateScreen';
-import AdvancedScreen from './screens/AdvancedScreen';
-import TrainingDaysConfig from './screens/TrainingDaysConfig'; 
+import MainScreen from '../TrainUp/src/MainScreen';
+import RegisterScreen from '../TrainUp/src/screens/auth/RegisterScreen';
+import LoginScreen from '../TrainUp/src/screens/auth/LoginScreen';
+import LevelSelectionScreen from '../TrainUp/src/screens/levels/LevelSelectionScreen';
+import ProgressCalendar from '../TrainUp/src/screens/levels/ProgressCalendar';
+import Training from '../TrainUp/src/screens/levels/Training';
+import BeginnerScreen from '../TrainUp/src/screens/levels/BeginnerScreen';
+import IntermediateScreen from '../TrainUp/src/screens/levels/IntermediateScreen';
+import AdvancedScreen from '../TrainUp/src/screens/levels/AdvancedScreen';
+import TrainingDaysConfig from '../TrainUp/src/screens/levels/TrainingDaysConfig'; 
 
 const Stack = createStackNavigator();
 
