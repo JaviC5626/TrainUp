@@ -60,7 +60,7 @@ const TrainingDaysConfig = ({ navigation }) => {
         <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
           <Text style={styles.buttonText}>Regresar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={handleSelect}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ProgressCalendar')}>
           <Text style={styles.buttonText}>Seleccionar</Text>
         </TouchableOpacity>
       </View>

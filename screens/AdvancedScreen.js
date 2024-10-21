@@ -1,14 +1,13 @@
-// screens/AdvancedScreen.js
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, FlatList} from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 
 export default function AdvancedScreen({ navigation }) {
   // Lista de ejercicios diarios 
   const exerciseData = [
-    { key: '1', name: 'Sentadilla bulgara', sets: '3', reps: '25', muscleGroup: 'glúteo-cuádriceps' },
-    { key: '2', name: 'Elevacion de piernas', sets: '3', reps: '20', muscleGroup: 'abdominales inferiores' },
-    { key: '3', name: 'Elevacion de talones con barra', sets: '3', reps: '15', muscleGroup: 'tríceps sural' },
-    { key: '4', name: 'Flexiones normal', sets: '3', reps: '30', muscleGroup: 'Pecho-tríceps' },
+    { key: '1', name: 'Sentadilla búlgara', sets: '3', reps: '25', muscleGroup: 'glúteo-cuádriceps' },
+    { key: '2', name: 'Elevación de piernas', sets: '3', reps: '20', muscleGroup: 'abdominales inferiores' },
+    { key: '3', name: 'Elevación de talones con barra', sets: '3', reps: '15', muscleGroup: 'tríceps sural' },
+    { key: '4', name: 'Flexiones normales', sets: '3', reps: '30', muscleGroup: 'Pecho-tríceps' },
     { key: '5', name: 'Flexiones en diamante', sets: '3', reps: '30', muscleGroup: 'Pecho-tríceps' },
   ];
 
@@ -29,8 +28,7 @@ export default function AdvancedScreen({ navigation }) {
       </TouchableOpacity>
       
       <Text style={styles.title}>Plan de entrenamiento Avanzado</Text>
-      <Text style={styles.title}>Duracion: 2 horas</Text>
-
+      <Text style={styles.duration}>Duración: 2 horas</Text>
 
       {/* Tabla de ejercicios */}
       <View style={styles.table}>
@@ -47,6 +45,14 @@ export default function AdvancedScreen({ navigation }) {
           keyExtractor={item => item.key}
         />
       </View>
+
+      {/* Botón de Continuar */}
+      <TouchableOpacity 
+        style={styles.continueButton} 
+        onPress={() => navigation.navigate('TrainingDaysConfig')}
+      >
+        <Text style={styles.buttonText}>Continuar</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -89,7 +95,7 @@ const styles = StyleSheet.create({
   },
   tableHeader: {
     flexDirection: 'row',
-    backgroundColor: '#FFF255',
+    backgroundColor: '#d2de0d',
     padding: 8,
   },
   tableRow: {
@@ -104,6 +110,26 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   headerCell: {
+    fontWeight: 'bold',
+  },
+  continueButton: {
+    backgroundColor: '#FFE8E5',
+    padding: 15,
+    borderRadius: 30,
+    width: '80%',
+    alignItems: 'center',
+    marginBottom: 20,
+    borderColor: 'black',
+    borderWidth: 1,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+  },
+  buttonText: {
     fontWeight: 'bold',
   },
 });

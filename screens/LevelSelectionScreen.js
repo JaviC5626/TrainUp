@@ -11,7 +11,7 @@ export default function LevelSelectionScreen({ navigation }) {
       <Text style={styles.title}>Selecciona tu nivel!</Text>
       <Image source={require('../assets/level_image.png')} style={styles.image} resizeMode="contain" />
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('TrainingDaysConfig')}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Beginner')}>
           <Text style={styles.buttonText}>Principiante</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Intermediate')}>
