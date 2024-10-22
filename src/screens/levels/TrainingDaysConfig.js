@@ -1,43 +1,21 @@
 import React, { useState } from 'react';
 import { View, Text, Button, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { getFirestore, setDoc, doc } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
 
-const TrainingDaysConfig = ({ navigation }) => {
-  const [selectedDays, setSelectedDays] = useState([]);
-  const firestore = getFirestore();
-  const auth = getAuth();
 
-  const daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+const TrainingDaysConfig = ({ route, navigation }) => {
 
-  const toggleDay = (day) => {
-    if (selectedDays.includes(day)) {
-      setSelectedDays(selectedDays.filter(d => d !== day));
-    } else {
-      setSelectedDays([...selectedDays, day]);
-    }
-  };
+  const { level } = route.params;
+ 
 
-  const handleSelect = async () => {
-    const user = auth.currentUser;
-    if (user) {
-      try {
-        const userDocRef = doc(firestore, 'trainingDays', user.uid);
-        await setDoc(userDocRef, { days: selectedDays });
-        console.log('Días seleccionados guardados en Firestore:', selectedDays);
-      } catch (error) {
-        console.error('Error al guardar los días:', error);
-      }
-    } else {
-      console.error('No hay usuario autenticado');
-    }
-  };
+  const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+
+  console.log(level)
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Selecciona tus días de entrenamiento</Text>
 
-      {}
       <Image 
         source={require('../../assets/image/Diasentreno.jpeg')} 
         style={styles.image} 
@@ -45,22 +23,22 @@ const TrainingDaysConfig = ({ navigation }) => {
       />
       
       <View style={styles.daysContainer}>
-        {daysOfWeek.map((day) => (
-          <TouchableOpacity 
-            key={day} 
-            style={[styles.dayButton, selectedDays.includes(day) ? styles.selected : null]} 
-            onPress={() => toggleDay(day)}
-          >
-            <Text style={styles.dayText}>{day}</Text>
-          </TouchableOpacity>
-        ))}
+      {days.map((day) => (
+        <TouchableOpacity
+          key={day}
+          style={styles.dayButton}
+          onPress={() => navigation.navigate('RoutineDisplay', { level, day })}
+        >
+          <Text style={styles.dayText}>{day}</Text>
+        </TouchableOpacity>
+      ))}
       </View>
 
       <View style={styles.buttonsContainer}>
         <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
           <Text style={styles.buttonText}>Regresar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Beginner')}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ProgressCalendar')}>
           <Text style={styles.buttonText}>Seleccionar</Text>
         </TouchableOpacity>
       </View>

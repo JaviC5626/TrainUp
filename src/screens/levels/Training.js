@@ -11,12 +11,13 @@ const ExerciseListScreen = ({ navigation }) => {
     const fetchExercises = async () => {
       try {
         const docRef = doc(firestore, 'Planprincipante', 'nHInWtm0b7KnCkCe4hDR'); 
+        const docSnap = await getDoc(docRef);  
 
         if (docSnap.exists()) {
           const data = docSnap.data();
           const { Ejercicio, Series, Repeticiones } = data;
 
-          // Crear una lista de objetos que contenga los datos
+          
           const exerciseList = Ejercicio.map((ejercicio, index) => ({
             nombre: ejercicio,
             series: Series[index],
@@ -39,7 +40,6 @@ const ExerciseListScreen = ({ navigation }) => {
     if (currentIndex < exercises.length - 1) {
       setCurrentIndex(currentIndex + 1); 
     } else {
-      
       setCurrentIndex(0); 
     }
   };
@@ -121,23 +121,26 @@ const styles = StyleSheet.create({
   },
   continueButton: {
     backgroundColor: '#FFE8E5',
-    padding: 15,
+    padding: 20,
     borderRadius: 30,
-    width: '70%',
+    width: '100%',
     alignItems: 'center',
     marginTop: 20,
     borderColor: 'black',
     borderWidth: 1,
     shadowColor: '#000',
+    alignItems: 'center', // Centrar el texto dentro del botón
     shadowOffset: {
       width: 2,
       height: 2,
+    
     },
     shadowOpacity: 0.5,
     shadowRadius: 3,
   },
   buttonText: {
     fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 

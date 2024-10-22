@@ -3,6 +3,10 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 export default function LevelSelectionScreen({ navigation }) {
+
+  const levels = ['Principiante', 'Intermedio', 'Avanzado'];
+
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
@@ -11,15 +15,16 @@ export default function LevelSelectionScreen({ navigation }) {
       <Text style={styles.title}>Selecciona tu nivel!</Text>
       <Image source={require('../../assets/image/level_image.png')} style={styles.image} resizeMode="contain" />
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Beginner')}>
-          <Text style={styles.buttonText}>Principiante</Text>
+      {levels.map((level) => (
+        <TouchableOpacity
+          key={level}
+          style={styles.button}
+          onPress={() => navigation.navigate('DaySelector', {level})}        
+        >
+          <Text style={styles.levelText}>{level}</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Intermediate')}>
-          <Text style={styles.buttonText}>Intermediario</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Advanced')}>
-          <Text style={styles.buttonText}>Avanzado</Text>
-        </TouchableOpacity>
+        
+      ))}
       </View>
     </View>
   );
