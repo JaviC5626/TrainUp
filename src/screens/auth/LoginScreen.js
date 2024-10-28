@@ -11,7 +11,7 @@ export default function LoginScreen({ navigation }) {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
       Alert.alert('Inicio de sesión exitoso', 'Has iniciado sesión correctamente');
-      navigation.navigate('LevelSelection');
+      navigation.navigate('Motivation');
     } catch (error) {
       Alert.alert('Error', error.message);
     }

@@ -12,6 +12,7 @@ import IntermediateScreen from '../TrainUp/src/screens/levels/IntermediateScreen
 import AdvancedScreen from '../TrainUp/src/screens/levels/AdvancedScreen';
 import TrainingDaysConfig from '../TrainUp/src/screens/levels/TrainingDaysConfig'; 
 import RoutineDisplayScreens from './src/screens/levels/RoutuneDisplayScreens';
+import MotivationScreen from './src/screens/levels/MotivationScreen';
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,7 @@ export default function MainApp() {
         <Stack.Screen name="LevelSelector" component={LevelSelectionScreen} options={{ headerShown: false }} />
         <Stack.Screen name="DaySelector" component={TrainingDaysConfig} options={{ headerShown: false}} />
         <Stack.Screen name="RoutineDisplay" component={RoutineDisplayScreens} options={{ headerShown: false}} />
+        <Stack.Screen name="Motivation" component={MotivationScreen} options={{ headerShown: false}} />
       </Stack.Navigator>
     </NavigationContainer>
   );
