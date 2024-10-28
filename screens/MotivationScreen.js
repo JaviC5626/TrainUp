@@ -5,6 +5,9 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 export default function MotivationScreen({ navigation }) {
   return (
     <View style={styles.container}>
+      <Image source={require('../assets/logo.png')} style={styles.logo} resizeMode="contain" />
+      <Text style={styles.title}>MOTIVACION DEL DIA!</Text>
+      <Text style={styles.message}>Cada repeticion te acerca más a tu mejor versión. ¡No te detengas!</Text>
       <Image source={require('../assets/motivation.png')} style={styles.motive} resizeMode="contain"/>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LevelSelection')}>
@@ -31,21 +34,47 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       backgroundColor: '#D0EDFF',
     },
+    logo: {
+      width: '25%',
+      height: undefined,
+      aspectRatio: 1,
+      marginBottom: 1,
+      marginTop: 60,
+      top: -10,
+      left: -130,
+    },
+    title: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      marginBottom: 20,
+      position: 'absolute',
+      top: 120,
+      right: 20,
+    },
+    message: {
+      fontSize: 15,
+      marginHorizontal: 14,
+      marginBottom: 5,
+    },
     motive: {
-      width: '100%',
+      width: '70%',
       height: undefined,
       aspectRatio: 1,
       marginBottom: 20,
     },
     buttonContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-      width: '80%',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '200px',
     },
     button: {
+      width: 180,
+      height: 40,
       backgroundColor: '#FFE8E5',
       padding: 15,
-      borderRadius: 30,
+      borderRadius: 20,
       alignItems: 'center',
       marginVertical: 10,
       borderColor: 'black',
@@ -60,5 +89,6 @@ const styles = StyleSheet.create({
     },
     buttonText: {
       fontWeight: 'bold',
+      margin: -5,
     },
   });
