@@ -5,20 +5,15 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 export default function MotivationScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Image source={require('../assets/logo.png')} style={styles.logo} resizeMode="contain" />
+      <Image source={require('../../assets/image/logo.png')} style={styles.logo} resizeMode="contain" />
       <Text style={styles.title}>MOTIVACION DEL DIA!</Text>
       <Text style={styles.message}>Cada repeticion te acerca más a tu mejor versión. ¡No te detengas!</Text>
-      <Image source={require('../assets/motivation.png')} style={styles.motive} resizeMode="contain"/>
+      <Image source={require('../../assets/image/motivation.png')} style={styles.motive} resizeMode="contain"/>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LevelSelection')}>
           <Text style={styles.buttonText}>Selecionar Nivel</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ProgressCalendar')}>
-          <Text style={styles.buttonText}>Calendario</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Trainng')}>
-          <Text style={styles.buttonText}>Plan</Text>
-        </TouchableOpacity>
+    
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Perfil')}>
           <Text style={styles.buttonText}>Perfil</Text>
         </TouchableOpacity>
@@ -47,9 +42,9 @@ const styles = StyleSheet.create({
       fontSize: 24,
       fontWeight: 'bold',
       marginBottom: 20,
-      position: 'absolute',
-      top: 120,
-      right: 20,
+      
+      top: 5,
+      right: -50,
     },
     message: {
       fontSize: 15,
@@ -57,7 +52,7 @@ const styles = StyleSheet.create({
       marginBottom: 5,
     },
     motive: {
-      width: '70%',
+      width: '90%',
       height: undefined,
       aspectRatio: 1,
       marginBottom: 20,
