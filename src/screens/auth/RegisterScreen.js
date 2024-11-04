@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image, KeyboardAvoidingView, Platform, ScrollView, Dimensions } from 'react-native';
 import { firebase } from '../../../firebase';
 
-// Obtener dimensiones de la pantalla
 const { width } = Dimensions.get('window');
 
 const RegisterScreen = ({ navigation }) => {
@@ -18,8 +17,20 @@ const RegisterScreen = ({ navigation }) => {
       Alert.alert('Error', 'Las contraseñas no coinciden');
       return;
     }
+
     try {
-      await firebase.auth().createUserWithEmailAndPassword(email, password);
+      // Crear el usuario en Firebase Authentication
+      const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+      const user = userCredential.user;
+
+      // Guardar datos adicionales en Firestore
+      await firebase.firestore().collection('users').doc(user.uid).set({
+        name: name,
+        email: email,
+        age: age,
+        sex: sex,
+      });
+
       Alert.alert('Registro exitoso', 'Has creado tu cuenta correctamente');
       navigation.navigate('Login');
     } catch (error) {
@@ -115,9 +126,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   logo: {
-    width: '50%',  // Ajuste para el 80% del ancho de la pantalla
+    width: '50%', 
     height: undefined,
-    aspectRatio: 1,  // Mantener proporción de la imagen
+    aspectRatio: 1, 
     marginBottom: 20,
     alignSelf: 'center',
     marginTop: 80,
@@ -131,14 +142,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   input: {
-    height: 40,  // Ajustado para mayor espacio
+    height: 40,
     borderColor: 'blue',
     borderWidth: 1,
     marginBottom: 15,
     paddingLeft: 8,
     borderRadius: 10,
     backgroundColor: 'white',
-    width: width * 0.85,  // Responsive: 85% del ancho de la pantalla
+    width: width * 0.85,
     alignSelf: 'center',
   },
   button: {
@@ -146,7 +157,7 @@ const styles = StyleSheet.create({
     padding: 15,
     alignItems: 'center',
     borderRadius: 30,
-    width: '60%',  // Ancho ajustado al 60%
+    width: '60%',
     alignSelf: 'center',
     borderColor: 'black',
     borderWidth: 1,

@@ -16,4 +16,8 @@ const firebaseConfig = {
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
-export { firebase };
+// Exporta auth y db para que puedas importarlos directamente
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+export { auth, db, firebase };
