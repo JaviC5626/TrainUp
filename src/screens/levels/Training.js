@@ -40,7 +40,7 @@ const ExerciseListScreen = ({ navigation }) => {
     if (currentIndex < exercises.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
-      setCurrentIndex(0); 
+      navigation.navigate('Rest');; 
     }
   };
 
