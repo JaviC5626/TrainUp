@@ -73,7 +73,7 @@ export default function ProfileScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Mi Perfil</Text>
+      <Text style={styles.title}>Mi Perfil </Text>
       {userData ? (
         <>
           <Image 
