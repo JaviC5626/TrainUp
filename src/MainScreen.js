@@ -1,16 +1,26 @@
-// screens/MainScreen.js
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native';
+
 
 export default function MainScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Image source={require('../src/assets/image/logo.png')} style={styles.logo} resizeMode="contain"/>
+      <Image 
+        source={require('../src/assets/image/logo.png')} 
+        style={styles.logo} 
+        resizeMode="contain"
+      />
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
+        <TouchableOpacity 
+          style={styles.button} 
+          onPress={() => navigation.navigate('Login')}
+        >
           <Text style={styles.buttonText}>Iniciar Sesión</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Register')}>
+        <TouchableOpacity 
+          style={styles.button} 
+          onPress={() => navigation.navigate('Register')}
+        >
           <Text style={styles.buttonText}>Registrarse</Text>
         </TouchableOpacity>
       </View>
