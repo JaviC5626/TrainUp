@@ -19,7 +19,7 @@ export default function MotivationScreen({ navigation }) {
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Trainng')}>
           <Text style={styles.buttonText}>Plan</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Perfil')}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Rest')}>
           <Text style={styles.buttonText}>Perfil</Text>
         </TouchableOpacity>
       </View>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     button: {
       width: 180,
       height: 40,
-      backgroundColor: '#FFE8E5',
+      backgroundColor: '#FF8E5',
       padding: 15,
       borderRadius: 20,
       alignItems: 'center',

@@ -10,6 +10,7 @@ import BeginnerScreen from './screens/BeginnerScreen';
 import IntermediateScreen from './screens/IntermediateScreen';
 import AdvancedScreen from './screens/AdvancedScreen';
 import MotivationScreen from './screens/MotivationScreen';
+import RestScreen from './screens/RestScreen';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,7 @@ export default function MainApp() {
         <Stack.Screen name="Intermediate" component={IntermediateScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Advanced" component={AdvancedScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Motivation" component={MotivationScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Rest" component={RestScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
