@@ -19,6 +19,7 @@ import RoutineDisplayScreens from './src/screens/levels/RoutuneDisplayScreens';
 import MotivationScreen from './src/screens/levels/MotivationScreen';
 import ProfileScreen from './src/screens/levels/ProfileScreen';
 import NotificationScheduler from './src/Notifications/NotificationScheduler';
+import RestScreen from './src/screens/levels/RestSecreen';
 
 const Stack = createStackNavigator();
 
@@ -90,6 +91,7 @@ export default function MainApp() {
           <Stack.Screen name="RoutineDisplay" component={RoutineDisplayScreens} options={{ headerShown: false }} />
           <Stack.Screen name="Motivation" component={MotivationScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Perfil" component={ProfileScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="Rest" component={RestScreen} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
 
