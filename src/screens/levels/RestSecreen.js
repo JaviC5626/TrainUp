@@ -2,17 +2,33 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 
-const RestScreen = ({ navigation }) => {
-  const [countdown, setCountdown] = useState(10); // Temporizador
+const RestScreen = ({ route, navigation }) => {
+  const { exercises, nextIndex, isLast } = route.params;
+  const [restTime, setRestTime] = useState(10); // Tiempo de descanso
 
   useEffect(() => {
-    if (countdown > 0) {
-      const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
-      return () => clearTimeout(timer);
-    } else {
-      navigation.navigate('Motivation'); 
+    const timer = setInterval(() => {
+      setRestTime((prev) => prev - 1);
+    }, 1000);
+
+    if (restTime === 0) {
+      clearInterval(timer);
+      if (isLast) {
+        // Redirigir al inicio o a una pantalla final
+        navigation.replace('Motivation'); 
+      } else {
+        // Redirigir al siguiente ejercicio
+        navigation.replace('Training', {
+          exercise: exercises[nextIndex],
+          nextIndex: nextIndex + 1,
+          isLast: nextIndex === exercises.length - 1,
+        });
+      }
     }
-  }, [countdown]);
+    console.log('Route Params:', route.params);
+
+    return () => clearInterval(timer);
+  }, [restTime]);
 
   return (
     <View style={styles.container}>
@@ -22,7 +38,7 @@ const RestScreen = ({ navigation }) => {
         source={require('../../assets/image/descanso.png')}
         style={styles.image}
       />
-      <Text style={styles.timer}>Descanso: {countdown}s</Text>
+      <Text style={styles.timer}>Descanso: {restTime}s</Text>
     </View>
   );
 };

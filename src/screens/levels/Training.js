@@ -37,12 +37,16 @@ const ExerciseListScreen = ({ navigation }) => {
   }, [firestore]);
 
   const handleContinue = () => {
-    if (currentIndex < exercises.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    } else {
-      navigation.navigate('Rest');; 
-    }
+    const currentExercise = exercises[currentIndex];
+  
+    navigation.navigate('Exercise', { 
+      exercise: currentExercise, 
+      exercises, // Pasa todos los ejercicios
+      nextIndex: currentIndex + 1,
+      isLast: currentIndex === exercises.length - 1,
+    });
   };
+  
 
   const handleBack = () => {
     navigation.goBack();
