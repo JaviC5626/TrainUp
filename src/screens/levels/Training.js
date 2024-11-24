@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
-import { auth } from '../../../firebase'; 
+import { auth } from '../../../firebase';
 
 const ExerciseListScreen = ({ navigation }) => {
   const [exercises, setExercises] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isStarted, setIsStarted] = useState(false);
+  const [timer, setTimer] = useState(0);
+  const [seriesCompleted, setSeriesCompleted] = useState(0); // Contador de series completadas
   const firestore = getFirestore();
 
   useEffect(() => {
@@ -22,18 +25,15 @@ const ExerciseListScreen = ({ navigation }) => {
 
         if (userDocSnap.exists()) {
           const userData = userDocSnap.data();
-          const userLevel = userData.Plandeentrenamiento; 
+          const userLevel = userData.Plandeentrenamiento;
 
-          // ID de los planes por nivel
           const planIds = {
-            Principiante: 'nHInWtm0b7KnCkCe4hDR', 
+            Principiante: 'nHInWtm0b7KnCkCe4hDR',
             Intermedio: 'rB2NE3NxgWja369Urv8f',
             Avanzado: 'Vik11jk212B3unuHlaLE',
           };
 
-          
           if (planIds[userLevel]) {
-           
             const collectionName = userLevel === 'Principiante' ? 'Planprincipante' : `Plan${userLevel}`;
             const exercisesDocRef = doc(firestore, collectionName, planIds[userLevel]);
             const exercisesDoc = await getDoc(exercisesDocRef);
@@ -42,7 +42,6 @@ const ExerciseListScreen = ({ navigation }) => {
               const data = exercisesDoc.data();
               const { Ejercicio, Series, Repeticiones, Imagenes } = data;
 
-              // Crear la lista de ejercicios
               const exerciseList = Ejercicio.map((ejercicio, index) => ({
                 nombre: ejercicio,
                 series: Series[index],
@@ -68,16 +67,37 @@ const ExerciseListScreen = ({ navigation }) => {
     fetchExercises();
   }, [firestore]);
 
-  const handleContinue = () => {
-    const currentExercise = exercises[currentIndex];
+  useEffect(() => {
+    let interval;
+    if (isStarted) {
+      interval = setInterval(() => {
+        setTimer((prevTimer) => prevTimer + 1);
+      }, 1000);
+    } else {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [isStarted]);
 
-    navigation.navigate('Exercise', {
-      exercise: currentExercise,
-      exercises, 
-      nextIndex: currentIndex + 1,
-      isLast: currentIndex === exercises.length - 1,
-    });
+  const handleStartExercise = () => {
+    setIsStarted(true);
   };
+
+  const handleContinue = () => {
+    if (currentIndex < exercises.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    } else {
+      if (seriesCompleted + 1 >= currentExercise.series) {
+        navigation.navigate('Completado'); 
+      } else {
+        setCurrentIndex(0);
+        setSeriesCompleted((prevSeries) => prevSeries + 1); 
+      }
+    }
+    setIsStarted(false);
+    setTimer(0);
+  };
+  
 
   const handleBack = () => {
     navigation.goBack();
@@ -97,7 +117,6 @@ const ExerciseListScreen = ({ navigation }) => {
 
       <Text style={styles.title}>Ejercicio: {currentExercise.nombre}</Text>
 
-      {/* Imagen dinámica del ejercicio */}
       <Image
         source={{ uri: currentExercise.imagen }}
         style={styles.image}
@@ -108,9 +127,22 @@ const ExerciseListScreen = ({ navigation }) => {
         Instrucciones: Realiza {currentExercise.series} series de {currentExercise.repeticiones} repeticiones.
       </Text>
 
-      <TouchableOpacity style={styles.continueButton} onPress={handleContinue}>
-        <Text style={styles.buttonText}>Continuar</Text>
-      </TouchableOpacity>
+      <Text style={styles.seriesCounter}>
+        Series completadas: {seriesCompleted}/{currentExercise.series}
+      </Text>
+
+      {isStarted ? (
+        <>
+          <Text style={styles.timer}>Tiempo: {timer} segundos</Text>
+          <TouchableOpacity style={styles.continueButton} onPress={handleContinue}>
+            <Text style={styles.buttonText}>Continuar</Text>
+          </TouchableOpacity>
+        </>
+      ) : (
+        <TouchableOpacity style={styles.startButton} onPress={handleStartExercise}>
+          <Text style={styles.buttonText}>Iniciar Ejercicio</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -159,17 +191,43 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingHorizontal: 20,
   },
-  continueButton: {
+  timer: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginVertical: 10,
+  },
+  seriesCounter: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginVertical: 10,
+    textAlign: 'center',
+  },
+  startButton: {
     backgroundColor: '#FFE8E5',
     padding: 20,
     borderRadius: 30,
-    width: '100%',
     alignItems: 'center',
     marginTop: 20,
     borderColor: 'black',
     borderWidth: 1,
     shadowColor: '#000',
-    alignItems: 'center', 
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+  },
+  continueButton: {
+    backgroundColor: '#FFE8E5',
+    padding: 20,
+    borderRadius: 30,
+    alignItems: 'center',
+    marginTop: 20,
+    borderColor: 'black',
+    borderWidth: 1,
+    shadowColor: '#000',
     shadowOffset: {
       width: 2,
       height: 2,
