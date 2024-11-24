@@ -1,29 +1,34 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { db, auth } from '../../../firebase.js'; 
-import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
+import { db, auth } from '../../../firebase.js';
+import { setDoc, doc, getDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
 
 export default function LevelSelectionScreen({ navigation }) {
   const levels = ['Principiante', 'Intermedio', 'Avanzado'];
 
   const saveLevelToFirestore = async (level) => {
-    const collectionName =
-      level === 'Principiante'
-        ? 'PlanPrincipiante'
-        : level === 'Intermedio'
-        ? 'PlanIntermedio'
-        : 'PlanAvanzado';
-
     const user = auth.currentUser; 
     if (user) {
+      const userDocRef = doc(db, 'users', user.uid); 
       try {
-        
-        await setDoc(doc(db, collectionName, `user_${user.uid}`), {
-          level,
-          timestamp: serverTimestamp(),
-          userId: user.uid, 
-        });
-        console.log(`Nivel ${level} guardado en la colección ${collectionName} para el usuario ${user.uid}`);
+        const userDoc = await getDoc(userDocRef); 
+
+        if (userDoc.exists()) {
+          
+          await updateDoc(userDocRef, {
+            Plandeentrenamiento: level,
+            updatedAt: serverTimestamp(), 
+          });
+          console.log(`El nivel ${level} ha sido actualizado para el usuario ${user.uid}`);
+        } else {
+          
+          await setDoc(userDocRef, {
+            Plandeentrenamiento: level,
+            createdAt: serverTimestamp(),
+            userId: user.uid,
+          });
+          console.log(`El nivel ${level} ha sido creado para el usuario ${user.uid}`);
+        }
       } catch (error) {
         console.error('Error al guardar en Firestore:', error);
       }

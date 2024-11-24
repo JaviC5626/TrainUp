@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import { auth } from '../../../firebase'; 
 
 const ExerciseListScreen = ({ navigation }) => {
   const [exercises, setExercises] = useState([]);
@@ -10,26 +11,57 @@ const ExerciseListScreen = ({ navigation }) => {
   useEffect(() => {
     const fetchExercises = async () => {
       try {
-        const docRef = doc(firestore, 'Planprincipante', 'nHInWtm0b7KnCkCe4hDR'); 
-        const docSnap = await getDoc(docRef);
+        const user = auth.currentUser;
+        if (!user) {
+          console.log('Usuario no autenticado');
+          return;
+        }
 
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          const { Ejercicio, Series, Repeticiones, Imagenes } = data;
+        const userDocRef = doc(firestore, 'users', user.uid);
+        const userDocSnap = await getDoc(userDocRef);
 
-          const exerciseList = Ejercicio.map((ejercicio, index) => ({
-            nombre: ejercicio,
-            series: Series[index],
-            repeticiones: Repeticiones[index],
-            imagen: Imagenes[index], 
-          }));
+        if (userDocSnap.exists()) {
+          const userData = userDocSnap.data();
+          const userLevel = userData.Plandeentrenamiento; 
 
-          setExercises(exerciseList);
+          // ID de los planes por nivel
+          const planIds = {
+            Principiante: 'nHInWtm0b7KnCkCe4hDR', 
+            Intermedio: 'rB2NE3NxgWja369Urv8f',
+            Avanzado: 'Vik11jk212B3unuHlaLE',
+          };
+
+          
+          if (planIds[userLevel]) {
+           
+            const collectionName = userLevel === 'Principiante' ? 'Planprincipante' : `Plan${userLevel}`;
+            const exercisesDocRef = doc(firestore, collectionName, planIds[userLevel]);
+            const exercisesDoc = await getDoc(exercisesDocRef);
+
+            if (exercisesDoc.exists()) {
+              const data = exercisesDoc.data();
+              const { Ejercicio, Series, Repeticiones, Imagenes } = data;
+
+              // Crear la lista de ejercicios
+              const exerciseList = Ejercicio.map((ejercicio, index) => ({
+                nombre: ejercicio,
+                series: Series[index],
+                repeticiones: Repeticiones[index],
+                imagen: Imagenes[index],
+              }));
+
+              setExercises(exerciseList);
+            } else {
+              console.log('No hay documentos de ejercicios para este plan');
+            }
+          } else {
+            console.log('Nivel de entrenamiento no válido');
+          }
         } else {
-          console.log("No hay documento!");
+          console.log('No se encontró el documento del usuario');
         }
       } catch (error) {
-        console.error("Error al obtener ejercicios: ", error);
+        console.error('Error al obtener ejercicios: ', error);
       }
     };
 
@@ -38,15 +70,14 @@ const ExerciseListScreen = ({ navigation }) => {
 
   const handleContinue = () => {
     const currentExercise = exercises[currentIndex];
-  
-    navigation.navigate('Exercise', { 
-      exercise: currentExercise, 
-      exercises, // Pasa todos los ejercicios
+
+    navigation.navigate('Exercise', {
+      exercise: currentExercise,
+      exercises, 
       nextIndex: currentIndex + 1,
       isLast: currentIndex === exercises.length - 1,
     });
   };
-  
 
   const handleBack = () => {
     navigation.goBack();
@@ -63,12 +94,12 @@ const ExerciseListScreen = ({ navigation }) => {
       <TouchableOpacity onPress={handleBack} style={styles.backButton}>
         <Text style={styles.backButtonText}>Regresar</Text>
       </TouchableOpacity>
-      
+
       <Text style={styles.title}>Ejercicio: {currentExercise.nombre}</Text>
-      
+
       {/* Imagen dinámica del ejercicio */}
       <Image
-        source={{ uri: currentExercise.imagen }} 
+        source={{ uri: currentExercise.imagen }}
         style={styles.image}
         resizeMode="contain"
       />
@@ -83,7 +114,6 @@ const ExerciseListScreen = ({ navigation }) => {
     </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
@@ -115,8 +145,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    alignSelf: 'center', 
-    marginTop: 80, 
+    alignSelf: 'center',
+    marginTop: 80,
   },
   image: {
     width: '100%',
@@ -139,11 +169,10 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1,
     shadowColor: '#000',
-    alignItems: 'center', // Centrar el texto dentro del botón
+    alignItems: 'center', 
     shadowOffset: {
       width: 2,
       height: 2,
-    
     },
     shadowOpacity: 0.5,
     shadowRadius: 3,

@@ -11,11 +11,11 @@ import LoginScreen from '../TrainUp/src/screens/auth/LoginScreen';
 import LevelSelectionScreen from '../TrainUp/src/screens/levels/LevelSelectionScreen';
 import ProgressCalendar from '../TrainUp/src/screens/levels/ProgressCalendar';
 import Training from '../TrainUp/src/screens/levels/Training';
+import RoutineDisplayScreens from './src/screens/levels/RoutuneDisplayScreens';
 import BeginnerScreen from '../TrainUp/src/screens/levels/BeginnerScreen';
 import IntermediateScreen from '../TrainUp/src/screens/levels/IntermediateScreen';
 import AdvancedScreen from '../TrainUp/src/screens/levels/AdvancedScreen';
 import TrainingDaysConfig from '../TrainUp/src/screens/levels/TrainingDaysConfig';
-import RoutineDisplayScreens from './src/screens/levels/RoutuneDisplayScreens';
 import MotivationScreen from './src/screens/levels/MotivationScreen';
 import ProfileScreen from './src/screens/levels/ProfileScreen';
 import NotificationScheduler from './src/Notifications/NotificationScheduler';
@@ -87,9 +87,9 @@ export default function MainApp() {
           <Stack.Screen name="Beginner" component={BeginnerScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Intermediate" component={IntermediateScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Advanced" component={AdvancedScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="RoutineDisplay" component={RoutineDisplayScreens} options={{ headerShown: false }} />
           <Stack.Screen name="LevelSelector" component={LevelSelectionScreen} options={{ headerShown: false }} />
           <Stack.Screen name="DaySelector" component={TrainingDaysConfig} options={{ headerShown: false }} />
-          <Stack.Screen name="RoutineDisplay" component={RoutineDisplayScreens} options={{ headerShown: false }} />
           <Stack.Screen name="Motivation" component={MotivationScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Perfil" component={ProfileScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Rest" component={RestScreen} options={{ headerShown: false }} />
