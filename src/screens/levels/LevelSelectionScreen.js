@@ -1,11 +1,41 @@
-// screens/LevelSelectionScreen.js
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { db, auth } from '../../../firebase.js';
+import { setDoc, doc, getDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
 
 export default function LevelSelectionScreen({ navigation }) {
-
   const levels = ['Principiante', 'Intermedio', 'Avanzado'];
 
+  const saveLevelToFirestore = async (level) => {
+    const user = auth.currentUser; 
+    if (user) {
+      const userDocRef = doc(db, 'users', user.uid); 
+      try {
+        const userDoc = await getDoc(userDocRef); 
+
+        if (userDoc.exists()) {
+          
+          await updateDoc(userDocRef, {
+            Plandeentrenamiento: level,
+            updatedAt: serverTimestamp(), 
+          });
+          console.log(`El nivel ${level} ha sido actualizado para el usuario ${user.uid}`);
+        } else {
+          
+          await setDoc(userDocRef, {
+            Plandeentrenamiento: level,
+            createdAt: serverTimestamp(),
+            userId: user.uid,
+          });
+          console.log(`El nivel ${level} ha sido creado para el usuario ${user.uid}`);
+        }
+      } catch (error) {
+        console.error('Error al guardar en Firestore:', error);
+      }
+    } else {
+      console.log('No hay usuario autenticado.');
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -13,18 +43,24 @@ export default function LevelSelectionScreen({ navigation }) {
         <Text style={styles.backButtonText}>Regresar</Text>
       </TouchableOpacity>
       <Text style={styles.title}>Selecciona tu nivel!</Text>
-      <Image source={require('../../assets/image/level_image.png')} style={styles.image} resizeMode="contain" />
+      <Image
+        source={require('../../assets/image/level_image.png')}
+        style={styles.image}
+        resizeMode="contain"
+      />
       <View style={styles.buttonContainer}>
-      {levels.map((level) => (
-        <TouchableOpacity
-          key={level}
-          style={styles.button}
-          onPress={() => navigation.navigate('DaySelector', {level})}        
-        >
-          <Text style={styles.levelText}>{level}</Text>
-        </TouchableOpacity>
-        
-      ))}
+        {levels.map((level) => (
+          <TouchableOpacity
+            key={level}
+            style={styles.button}
+            onPress={() => {
+              saveLevelToFirestore(level); 
+              navigation.navigate('DaySelector', { level }); 
+            }}
+          >
+            <Text style={styles.levelText}>{level}</Text>
+          </TouchableOpacity>
+        ))}
       </View>
     </View>
   );
