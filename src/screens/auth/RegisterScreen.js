@@ -47,7 +47,7 @@ const RegisterScreen = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <Text style={styles.backButtonText}>Regresar</Text>
         </TouchableOpacity>
-        <Image source={require('../../assets/image/logo.png')} style={styles.logo} resizeMode="contain" />
+        <Image source={require('../../assets/image/logo.jpg')} style={styles.logo} resizeMode="contain" />
         <View style={styles.formContainer}>
           <Text style={styles.label}>Nombre:</Text>
           <TextInput

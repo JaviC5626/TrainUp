@@ -77,7 +77,7 @@ export default function ProfileScreen({ navigation }) {
       {userData ? (
         <>
           <Image 
-            source={profileImage ? { uri: profileImage } : require('../../assets/image/logo.png')} 
+            source={profileImage ? { uri: profileImage } : require('../../assets/image/logo.jpg')} 
             style={styles.profileImage} 
             resizeMode="cover" 
           />

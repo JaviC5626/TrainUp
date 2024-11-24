@@ -6,7 +6,7 @@ export default function MainScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Image 
-        source={require('../src/assets/image/logo.png')} 
+        source={require('../src/assets/image/logo.jpg')} 
         style={styles.logo} 
         resizeMode="contain"
       />
