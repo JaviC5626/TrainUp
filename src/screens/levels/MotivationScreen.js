@@ -5,7 +5,6 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 export default function MotivationScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Image source={require('../../assets/image/logo.png')} style={styles.logo} resizeMode="contain" />
       <Text style={styles.title}>MOTIVACION DEL DIA!</Text>
       <Text style={styles.message}>Cada repeticion te acerca más a tu mejor versión. ¡No te detengas!</Text>
       <Image source={require('../../assets/image/motivation.png')} style={styles.motive} resizeMode="contain"/>
@@ -16,6 +15,10 @@ export default function MotivationScreen({ navigation }) {
     
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Perfil')}>
           <Text style={styles.buttonText}>Perfil</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Informacion')}>
+          <Text style={styles.buttonText}>Información Útil</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -29,27 +32,17 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       backgroundColor: '#D0EDFF',
     },
-    logo: {
-      width: '25%',
-      height: undefined,
-      aspectRatio: 1,
-      marginBottom: 1,
-      marginTop: 60,
-      top: -10,
-      left: -130,
-    },
     title: {
       fontSize: 24,
       fontWeight: 'bold',
       marginBottom: 20,
-      
-      top: 5,
-      right: -50,
+      textAlign: 'center', 
     },
     message: {
       fontSize: 15,
       marginHorizontal: 14,
       marginBottom: 5,
+      textAlign: 'center', 
     },
     motive: {
       width: '90%',
@@ -86,4 +79,4 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       margin: -5,
     },
-  });
+});
