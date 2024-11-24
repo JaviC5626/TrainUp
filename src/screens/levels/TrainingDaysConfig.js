@@ -6,8 +6,8 @@ const TrainingDaysConfig = ({ route, navigation }) => {
 
   const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 
-
-  console.log(days)
+  console.log(days);
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Selecciona tus días de entrenamiento</Text>
@@ -31,12 +31,9 @@ const TrainingDaysConfig = ({ route, navigation }) => {
         <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
           <Text style={styles.buttonText}>Regresar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ProgressCalendar')}>
-          <Text style={styles.buttonText}>Calendario</Text>
-        </TouchableOpacity>
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -90,7 +87,7 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center', 
     width: '100%',
   },
   button: {
