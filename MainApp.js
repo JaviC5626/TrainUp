@@ -5,23 +5,23 @@ import { createStackNavigator } from '@react-navigation/stack';
 import * as Notifications from 'expo-notifications';
 
 // Importaciones de pantallas
-import MainScreen from '../TrainUp/src/MainScreen';
-import RegisterScreen from '../TrainUp/src/screens/auth/RegisterScreen';
-import LoginScreen from '../TrainUp/src/screens/auth/LoginScreen';
-import LevelSelectionScreen from '../TrainUp/src/screens/levels/LevelSelectionScreen';
-import ProgressCalendar from '../TrainUp/src/screens/levels/ProgressCalendar';
-import Training from '../TrainUp/src/screens/levels/Training';
+import MainScreen from './src/MainScreen';
+import RegisterScreen from './src/screens/auth/RegisterScreen';
+import LoginScreen from './src/screens/auth/LoginScreen';
+import LevelSelectionScreen from './src/screens/levels/LevelSelectionScreen';
+import ProgressCalendar from './src/screens/levels/ProgressCalendar';
+import Training from './src/screens/levels/Training';
 import RoutineDisplayScreens from './src/screens/levels/RoutuneDisplayScreens';
-import BeginnerScreen from '../TrainUp/src/screens/levels/BeginnerScreen';
-import IntermediateScreen from '../TrainUp/src/screens/levels/IntermediateScreen';
-import AdvancedScreen from '../TrainUp/src/screens/levels/AdvancedScreen';
-import TrainingDaysConfig from '../TrainUp/src/screens/levels/TrainingDaysConfig';
+import BeginnerScreen from './src/screens/levels/BeginnerScreen';
+import IntermediateScreen from './src/screens/levels/IntermediateScreen';
+import AdvancedScreen from './src/screens/levels/AdvancedScreen';
+import TrainingDaysConfig from './src/screens/levels/TrainingDaysConfig';
 import MotivationScreen from './src/screens/levels/MotivationScreen';
 import ProfileScreen from './src/screens/levels/ProfileScreen';
 import NotificationScheduler from './src/Notifications/NotificationScheduler';
 import RestScreen from './src/screens/levels/RestSecreen';
 import ExerciseScreen from './src/screens/levels/ExerciseScreen';
-import Completado from '../TrainUp/src/screens/levels/Completado';
+import Completado from './src/screens/levels/Completado';
 import Informacion from './src/screens/levels/Informacion';
 
 const Stack = createStackNavigator();

@@ -4,10 +4,10 @@
     "slug": "firebase-test",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/assets/image/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/assets/image/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,12 +16,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "../ ./assets/adaptive-icon.png",
+        "foregroundImage": "",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.sotoedwin.firebasetest"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./src/assets/image/favicon"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f434674b-2f29-4802-97fd-3e752dfb5093"
+      }
     }
   }
 }
